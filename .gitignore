@@ -1,0 +1,9 @@
+#java
+.DS_Store
+.classpath
+.project
+/.settings/*
+*/.settings/*
+target/*
+*/target/*
+

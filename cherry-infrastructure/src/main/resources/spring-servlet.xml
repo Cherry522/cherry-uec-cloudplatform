@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- spring的配置文件有两个：spring-servlet.xml和applicationContext.xml两个文件，之所以分开是因为：spring-servlet.xml只负责处理spring MVC中的VC层，applicaContext.xml负责处理spring的配置，这样的好处是，在junit测试的时候(service层测试)，只需要读取applicationContext.xml里的配置就好了，速度快 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	
+	<!-- 扫描Controller层的注解 -->
+	<context:component-scan base-package="com.cherry.infrastructure.*.controller">
+		<!-- 只扫描@Controller注解，如果不写这句的话，正常应该是扫描所有注解，包括：@Component,@Controller,@Respotory,@Service -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+		
+	<!-- 视图解析 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 设置默认首页 -->
+	<mvc:view-controller path="/" view-name="index"/>
+</beans>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+	version="3.0" >
+  <display-name>Archetype Created Web Application</display-name>
+  <!-- Filter的处理顺序和filter-mapping在web.xml中定义的顺序相同 -->
+  
+  <!-- 配置是否忽略掉EL表达式，true：忽略EL表达式(JSP页面EL表达式不好使)；false：不忽略EL表达式(JSP页面EL表达式好使) -->
+  <jsp-config>
+  	<jsp-property-group>
+	    <el-ignored>true</el-ignored> 
+  	</jsp-property-group>
+  </jsp-config>
+
+  <!-- 日志,log4j -->
+  <!-- 读取log4j的properties的配置文件 -->
+  <context-param>
+  	<param-name>log4jConfigLocation</param-name>
+  	<param-value>classpath:log4j.properties</param-value>
+  </context-param>
+  <!-- 每隔60秒去扫描log4j.properties文件(单位毫秒)，这样如果修改properties的配置文件，就不需要重启项目就能生效了 -->
+  <context-param>
+  	<param-name>log4jRefreshInterval</param-name>
+  	<param-value>1000</param-value>
+  </context-param>
+  <!-- 通过spring的Log4jConfigListener去读取配置文件 -->
+  <listener>
+  	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  
+  <!-- spring mvc -->
+  <servlet>
+    <servlet-name>spring</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>spring</servlet-name>
+    <!-- “/” 是用来定义default servlet映射的 -->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
