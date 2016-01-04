@@ -34,7 +34,7 @@ public class UserController{
 	 * <p>Author:chenyan/陈燕</p>
 	 * @return 页面地址
 	 */
-	@RequestMapping(value="/",method={RequestMethod.GET})
+	@RequestMapping(method={RequestMethod.GET})
 	public String gotoUserPage(){
 		logger.info("加载用户页面");
 		return "user/user";//返回响应路径

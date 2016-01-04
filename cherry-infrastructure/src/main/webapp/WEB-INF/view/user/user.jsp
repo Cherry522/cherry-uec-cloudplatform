@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${pageContext.request.contextPath }
 	${ctx}
 	用户界面
 </body>

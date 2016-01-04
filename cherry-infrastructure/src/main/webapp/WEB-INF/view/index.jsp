@@ -2,8 +2,7 @@
 <%@ include file="/common/include_header.jsp" %>
 <html>
 <body>
-<h2>Hello World!</h2>
-${ctx}
+<h2>首页</h2>
 <ul>
 	<li>
 		<a href="${ctx}/user">用户页面</a>

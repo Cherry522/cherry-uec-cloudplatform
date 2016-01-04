@@ -11,9 +11,15 @@
 	<!-- 扫描Controller层的注解 -->
 	<context:component-scan base-package="com.cherry.infrastructure.*.controller">
 		<!-- 只扫描@Controller注解，如果不写这句的话，正常应该是扫描所有注解，包括：@Component,@Controller,@Respotory,@Service -->
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+<!-- 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/> -->
 	</context:component-scan>
 		
+	<!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的。
+并提供了：数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB），读写JSON的支持（Jackson）。
+		注解：@RequestMapping 默认会调用：RequestMappingHandlerMapping 和 RequestMappingHandlerAdapter两个类，而这个注解刚好注入了这两个类
+	 -->
+	<mvc:annotation-driven/>
+	
 	<!-- 视图解析 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"></property>

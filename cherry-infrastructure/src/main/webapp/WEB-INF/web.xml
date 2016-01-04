@@ -32,8 +32,9 @@
   
   <!-- spring mvc -->
   <servlet>
-    <servlet-name>spring</servlet-name>
+    <servlet-name>springMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- 配置读取spring配置文件的地址，如果不配置默认找/WEB-INFO/[servlet-name]-servlet.xml -->
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:spring-servlet.xml</param-value>
@@ -41,8 +42,11 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>spring</servlet-name>
+    <servlet-name>springMVC</servlet-name>
     <!-- “/” 是用来定义default servlet映射的 -->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+<!--   <listener> -->
+<!--     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
+<!--   </listener> -->
 </web-app>
